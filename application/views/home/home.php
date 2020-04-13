@@ -4,9 +4,14 @@
 	<title>Outdoor ISPU</title>
 
 	<link rel="stylesheet" href="<?= base_url('assets/frontend/css/bootstrap.min.css') ?>">
+	<style type="text/css">
+		.bg-color-orange{
+			background-color: orange;
+		}
+	</style>
 </head>
-<body class="bg-light">
-	<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<body class="bg-secondary" onload="startTime()">
+	<nav class="navbar navbar-expand-lg navbar-light bg-color-orange">
 	  <a class="navbar-brand" href="<?= site_url() ?>">
 	  	<img src="<?= base_url('assets/frontend/img/ispumap.png') ?>" width="10%">
 	  </a>
@@ -28,7 +33,7 @@
 		</div>
 		<div class="row text-center" style="margin-bottom: 10px;">
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>PM10</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['pm10'] ?></h4>
@@ -36,7 +41,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>PM25</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['pm25'] ?></h4>
@@ -44,7 +49,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>SO2</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['so2'] ?></h4>
@@ -52,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>CO</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['co'] ?></h4>
@@ -60,7 +65,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>O3</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['o3'] ?></h4>
@@ -68,7 +73,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>NO2</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['no2'] ?></h4>
@@ -79,7 +84,7 @@
 		<!-- weather -->
 		<div class="row text-center">
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>WS</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['ws'] ?></h4>
@@ -87,7 +92,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>WD</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['wd'] ?></h4>
@@ -95,7 +100,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>HUMIDITY</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['humidity'] ?></h4>
@@ -103,7 +108,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>TEMPERATURE</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['temperature'] ?></h4>
@@ -111,7 +116,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>PRESSURE</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['pressure'] ?></h4>
@@ -119,7 +124,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>SR</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['sr'] ?></h4>
@@ -127,7 +132,7 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card">
+				<div class="card bg-color-orange">
 					<h6>RAIN&nbsp;INTENSITY</h6>
 					<?php foreach($aqmdata as $aqm) : ?>
 						<h4><?= $aqm['rain_intensity'] ?></h4>
@@ -137,11 +142,50 @@
 		</div>
 	</div>
 
+	<div class="footer text-right p-2 fixed-bottom bg-color-orange">
+		<div class="row">
+			<div class="col-6 text-left">
+				<a><img style="margin-bottom: 5px;" src="<?= base_url('assets/frontend/img/map.png') ?>">&nbsp;Stasiun : <b>&nbsp;CILEGON</b></a>
+			</div>
+			<div class="col-6 text-right">
+		      <?php
+		      date_default_timezone_set("Asia/Bangkok");
+		      $day = date("D");
+		      $dayList = array(
+		        'Sun' => 'Minggu',
+		        'Mon' => 'Senin',
+		        'Tue' => 'Selasa',
+		        'Wed' => 'Rabu',
+		        'Thu' => 'Kamis',
+		        'Fri' => 'Jumat',
+		        'Sat' => 'Sabtu'
+		      );
+		      $month = date("m");
+		      $monthList = array(
+		        '01' => 'Januari',
+		        '02' => 'Februari',
+		        '03' => 'Maret',
+		        '04' => 'April',
+		        '05' => 'Mei',
+		        '06' => 'Juni',
+		        '07' => 'Juli',
+		        '08' => 'Agustus',
+		        '09' => 'September',
+		        '10' => 'Oktober',
+		        '11' => 'November',
+		        '12' => 'Desember',
+		      );
+		      echo $dayList[$day].', '.date("j").' '.$monthList[$month].' '.date("Y").' | <a id="clock"></a>'; ?>
+		  </div>
+		</div>
+    </div>
+
 	<!-- chart -->	
 	<script src="<?= base_url('assets/frontend/js/chart/utils.js') ?>"></script>
 	<script src="<?= base_url('assets/frontend/js/chart/chart.min.js') ?>"></script>
 
 	<!-- jQuery -->
+	<script src="<?= base_url('assets/frontend/js/jquery.min.js') ?>"></script>
 	<script src="<?= base_url('assets/frontend/js/jquery-3.4.1.slim.min.js') ?>"></script>
 	<script src="<?= base_url('assets/frontend/js/popper.min.js') ?>"></script>
 	<script src="<?= base_url('assets/frontend/js/bootstrap.min.js') ?>"></script>
@@ -153,8 +197,8 @@
 		        labels: ['PM10','SO','CO','O3','NO2'],
 		        datasets: [{
 		            label: 'ISPU',
-		            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-		            borderColor: window.chartColors.red,
+		            backgroundColor: color(window.chartColors.orange).alpha(1).rgbString(),
+		            borderColor: window.chartColors.orange,
 		            borderWidth: 1,
 		            data: [
 		            	<?php foreach($aqmispu as $ispu) : ?>
@@ -176,6 +220,10 @@
 		        options: {
 		            responsive: true,
 		            legend: {
+		                labels: {
+			                fontColor: "orange",
+			                fontSize: 18
+			            },
 		                position: 'bottom',
 		                display: true,
 		 
@@ -206,9 +254,43 @@
 		                display: false,
 		                text: ''
 		            },
+		            scales: {
+			            yAxes: [{
+			                ticks: {
+			                    fontColor: "orange",
+			                    fontSize: 14,
+			                    beginAtZero: true
+			                }
+			            }],
+			            xAxes: [{
+			                ticks: {
+			                    fontColor: "orange",
+			                    fontSize: 22,
+			                    stepSize: 1,
+			                    beginAtZero: true
+			                }
+			            }]
+			        }
 		        }
 		    });
 		});
+	</script>
+	<script type="text/javascript">
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('clock').innerHTML =
+			h + ":" + m + ":" + s;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
 	</script>
 </body>
 </html>
