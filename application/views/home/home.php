@@ -224,7 +224,7 @@
 			                fontColor: "orange",
 			                fontSize: 18
 			            },
-		                position: 'bottom',
+		                position: 'top',
 		                display: true,
 		 
 		            },
