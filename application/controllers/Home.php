@@ -5,9 +5,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['aqmdata']	= $this->home_m->get_aqmdata();
-		$data['aqmispu']	= $this->home_m->get_aqmispu();
+		$data['aqmdata']		= $this->home_m->get_aqmdata();
+		$data['aqmispu']		= $this->home_m->get_aqmispu();
+		$data['configuration'] 	= $this->configuration_m->get_aqmconfiguration();
 		
-		$this->load->view('home/home', $data);
+		$this->temp_frontend->load('template/template', 'home/home', $data);
 	}
 }
